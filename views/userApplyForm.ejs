@@ -1,0 +1,25 @@
+<%- include('nav.ejs') %>
+
+<form method="post" enctype="multipart/form-data" action="/authenticateUserLogin">
+    <% if(jobs.jobId){ %> 
+        <input type="hidden" name="product_id" value="<%= jobId %>">
+    <% } %> 
+    <div class="mb-3">
+        <label for="name" class="form-label">Name</label>
+        <input type="text" class="form-control" id="name" name="name" value="<%= typeof name !== 'undefined' ? name : '' %>" required>
+    </div>
+    <div class="mb-3">
+        <label for="UserEmail" class="form-label">Email</label>
+        <input type="email" class="form-control" id="UserEmail" name="UserEmail" value="<%= typeof email !== 'undefined' ? email : '' %>" required>
+    </div>
+    <div class="mb-3">
+        <label for="contact" class="form-label">Contact</label>
+        <input type="text" class="form-control" id="contact" name="contact" value="<%= typeof contact !== 'undefined' ? contact : '' %>" required>
+    </div>
+    <div class="mb-3">
+        <label for="resume" class="form-label">Resume</label>
+        <input type="file" class="form-control" id="resume" name="resume" required>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>

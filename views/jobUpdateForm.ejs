@@ -1,0 +1,72 @@
+<%- include('nav.ejs') %>
+
+<form action="/editjob/<%= job.jobId %>" method="post">
+    <div class="mb-3">
+      <label for="jobCategory" class="form-label">Select new job category</label>
+      <select class="form-select" id="jobCategory" name="jobCategory">
+        <option value="tech">Tech</option>
+        <option value="nonTech">Non Tech</option>
+        </select>
+    </div>
+    <div class="mb-3">
+      <label for="jobDesignation" class="form-label">Select new job designation</label>
+      <select class="form-select" id="jobDesignation" name="jobDesignation">
+        <option value="sde">SDE</option>
+        <option value="hr">Hr</option>
+        <option value="webDevelopment">Web Developer</option>
+        <option value="teacher">Teacher</option>
+        </select>
+    </div>
+    <div class="mb-3">
+      <label for="jobLocation" class="form-label">Enter job location</label>
+      <input type="text" class="form-control" id="jobLocation" name="jobLocation" required>
+    </div>
+    <div class="mb-3">
+      <label for="jobType" class="form-label">Job Type</label>
+      <select class="form-select" id="jobType" name="jobType">
+        <option value="full-time">Full-time</option>
+        <option value="part-time">Part-time</option>
+        <option value="contract">Contract</option>
+      </select>
+    </div>
+    <div class="mb-3">
+      <label for="companyName" class="form-label">Company Name</label>
+      <input type="text" class="form-control" id="companyName" name="companyName" required>
+    </div>
+    <div class="mb-3">
+      <label for="salaryRange" class="form-label">Salary Range</label>
+      <input type="text" class="form-control" id="salaryRange" name="salaryRange" required>
+    </div>
+    <div class="mb-3">
+      <label for="totalPositions" class="form-label">Total Positions</label>
+      <input type="number" class="form-control" id="totalPositions" name="totalPositions" required>
+    </div>
+    <div class="mb-3">
+      <label for="skills" class="form-label">Select skills required for this job</label>
+      <div id="skills">
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" id="skillAnalysis" name="skills[]" value="analysis">
+          <label class="form-check-label" for="skillAnalysis">Analysis</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" id="skillJava" name="skills[]" value="java">
+          <label class="form-check-label" for="skillJava">Java</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" id="skillJavaScript" name="skills[]" value="javaScript">
+          <label class="form-check-label" for="skillJavaScript">JavaScript</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" id="skillNodeJS" name="skills[]" value="nodeJS">
+          <label class="form-check-label" for="skillNodeJS">Node.js</label>
+        </div>
+      </div>
+    </div>
+    
+    
+    <div class="mb-3">
+      <label for="applyBy" class="form-label">Apply By</label>
+      <input type="date" class="form-control" id="applyBy" name="applyBy" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Update</button>
+  </form>

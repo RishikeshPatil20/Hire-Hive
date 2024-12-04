@@ -1,0 +1,28 @@
+<%- include('nav.ejs') %>
+
+<form action="/authenticateLogin" method="post" >
+
+    <div class="mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input type="email" class="form-control" id="email" name="UserEmail" value="<%= typeof email !== 'undefined' ? email : '' %>" required>
+    </div>
+
+    <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+        <input type="password" class="form-control" id="password" name="UserPassword" required>
+    </div>
+
+    <!-- Display errors if any -->
+    <% if (errorMessage && errorMessage.length > 0) { %>
+        <div class="alert alert-danger">
+            <ul>
+                <% errorMessage.forEach(function(error) { %>
+                    <li><%= error.message %></li> <!-- Access the message field -->
+                <% }) %>
+            </ul>
+        </div>
+    <% } %>
+    
+    
+    <button type="submit" class="btn btn-primary">Login</button>
+</form>

@@ -1,0 +1,31 @@
+<%- include('nav.ejs') %>
+<div>
+    <h1>User DashBoard</h1>
+</div>
+<!-- Main content -->
+<div class="container mt-5">
+    <!-- list of jobs -->
+    <div class="row gy-5">
+        <% jobs.forEach((job) => { %>
+        <div class="col-md-4">
+            <div class="p-3 border bg-light viewjobs">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Actively Hiring</h5>
+                        <h6 class="card-subtitle mb-2 text-muted"><%= job.companyName %></h6>
+                        <p class="card-text"><%= job.jobDesi %></p>
+                        <p class="card-text"><%= job.jobLocation %></p>
+                        <p class="card-text"><%= job.salaryRange %></p>
+                        <div class="tags">
+                            <% job.skillsRequired.forEach(skill => { %>
+                                <span class="tag"><%= skill %></span>
+                            <% }) %>
+                        </div>
+                        <a href="/viewJobDetails/<%= job.jobId %>" class="btn btn-primary mt-3">View Details</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <% }); %>
+    </div>
+</div>

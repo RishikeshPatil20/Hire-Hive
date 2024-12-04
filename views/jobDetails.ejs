@@ -1,0 +1,45 @@
+<%- include('nav.ejs') %>
+    <div class="main-content">
+        <div class="viewjobs">
+            <div class="card">
+                <div class="card-body">
+                    <!-- Dynamic job details -->
+                    <h5>SDE Opportunity in <%= job.jobLocation %> at <%= job.companyName %>
+                    </h5>
+                    <p class="companyName">
+                        <%= job.companyName %> - <%= job.jobDesi %>
+                    </p>
+                    <p class="companyLocation">Location: <%= job.jobLocation %>
+                    </p>
+                    <p class="companySalary">Salary: <%= job.salaryRange %>
+                    </p>
+                    <p class="companyApplyDate">Apply by: <%= job.applyByDate %>
+                    </p>
+                    <p class="companyNumberOpenings">Number of openings: <%= job.totalPositions %>
+                    </p>
+                    <p class="companyNumberOpenings">Applications: <%= applicantCount %>
+                    </p>
+
+                    <!-- Dynamic skills -->
+                    <div class="tags">
+                        <% job.skillsRequired.forEach(skill=> { %>
+                            <span class="tag skills">
+                                <%= skill %>
+                            </span>
+                            <% }) %>
+                    </div>
+
+                    <!-- Buttons for actions -->
+                    
+                    <form action="/applyNow/<%= job.jobId %>" method="post">
+                        <button type="submit" class="btn btn-primary">Apply Now</button>
+                    </form>
+                    <% if ( userRole === 'recruiter') { %>
+                        <button class="btn btn-secondary editNow"><a href="/viewUpdateForm/<%= job.jobId %>">Edit</a></button>
+                        <button class="btn btn-danger deleteNow"><a href="/deleteJob/<%= job.jobId %>">Delete</a></button>
+                    <% } %>
+                   
+                </div>
+            </div>
+        </div>
+    </div>
