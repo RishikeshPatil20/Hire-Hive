@@ -22,18 +22,24 @@
 
                     <!-- Dynamic skills -->
                     <div class="tags">
-                        <% job.skillsRequired.forEach(skill=> { %>
-                            <span class="tag skills">
-                                <%= skill %>
-                            </span>
-                            <% }) %>
+                        <p>Skills: 
+                            <% job.skillsRequired.forEach(skill=> { %>
+                                <span class="tag skills">
+                                    <%= skill %>
+                                </span>
+                                <% }) %>
+                        </p>
+                        
                     </div>
 
                     <!-- Buttons for actions -->
+                    <% if ( userRole === 'recruiter') { %>
                     
+                    <% }else{ %>
                     <form action="/applyNow/<%= job.jobId %>" method="post">
                         <button type="submit" class="btn btn-primary">Apply Now</button>
                     </form>
+                    <%}%>
                     <% if ( userRole === 'recruiter') { %>
                         <button class="btn btn-secondary editNow"><a href="/viewUpdateForm/<%= job.jobId %>">Edit</a></button>
                         <button class="btn btn-danger deleteNow"><a href="/deleteJob/<%= job.jobId %>">Delete</a></button>

@@ -35,17 +35,21 @@ export default class UserModule {
     return (this.resume = _resume);
   }
 
+  // static validateUserEmail(email) {
+  //   let userFound = false; // Flag for checking if user is found
+  //   for (let i = 0; i < users.length; i++) {
+  //     if (users[i].email === email) {
+  //       // Correct property access
+  //       userFound = true;
+  //       break;
+  //     }
+  //   }
+  //   return userFound;
+  // }
   static validateUserEmail(email) {
-    let userFound = false; // Flag for checking if user is found
-    for (let i = 0; i < users.length; i++) {
-      if (users[i].email === email) {
-        // Correct property access
-        userFound = true;
-        break;
-      }
-    }
-    return userFound;
-  }
+    return users.find(user => user.email === email) || null;
+}
+
   static validateUser(email, password) {
     let userFound = false; // Flag for checking if user is found
     for (let i = 0; i < users.length; i++) {
@@ -78,18 +82,18 @@ export default class UserModule {
 let users = [
   new UserModule(
     1,
-    "Atharva1",
-    "atharva1@gmail.com",
+    "abc",
+    "abc1@gmail.com",
     7896541230,
-    "Atharva1",
+    "abcd123",
     "https://yourdomain.com/resumes/atharva-resume.pdf"
   ),
   new UserModule(
     1,
-    "Atharva2",
-    "atharva2@gmail.com",
+    "bcd",
+    "bcd1@gmail.com",
     8896541230,
-    "Atharva2",
+    "abcd123",
     "https://yourdomain.com/resumes/atharva-resume.pdf"
   ),
   new UserModule(

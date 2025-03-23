@@ -37,6 +37,7 @@ server.get('/jobs', userController.viewJobsPage);
 server.get('/viewJobDetails/:jobId', userController.viewJobDetails);
 server.post('/applyNow/:jobId', userController.userApplyform);
 server.post('/authenticateUserLogin',upload.single('resume'),userController.verifyUser);
+//recuriter controller
 server.get('/registerRecruiter',recruiterController.viewRegisterRecruiter);
 server.post('/authenticateRecruiterLogin',recruiterController.registerRecruiter);
 server.get('/viewRecruiterLogin',recruiterController.viewLoginPage);
@@ -44,8 +45,10 @@ server.post('/verifyRecruiterLogin',recruiterController.verifyRecruiterLogin);
 server.get('/viewUpdateForm/:jobId',recruiterController.viewUpdateJobForm);
 server.post('/editjob/:jobId',recruiterController.updateJob);
 server.get('/deleteJob/:jobId',recruiterController.deleteJob);
-
-// Start the server
+//jobseeker controller
+server.get('/viewControllerLogin',userController.viewLoginPage);
+server.post('/authenticateLogin',userController.verifyUser);
+// Start the server verifyUser
 server.listen(PORT, () => {
   console.log(`Server started on port ${PORT}`);
 });

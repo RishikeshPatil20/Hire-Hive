@@ -1,0 +1,69 @@
+1. Introduction
+The Job Portal is a web application that connects job seekers with recruiters. Recruiters can post and manage job listings, while job seekers can browse and apply for jobs. The system follows an MVC architecture, using Node.js, Express.js, and EJS for templating.
+
+2. System Architecture
+ 2.1 Technology Stack
+- Frontend: HTML, CSS, JavaScript, Bootstrap, EJS
+- Backend: Node.js, Express.js
+- Database: (Currently not implemented, but MongoDB or MySQL can be used in the future)
+- Authentication: JWT and bcrypt for secure login
+- Other Tools & Libraries: Multer (file uploads), Nodemailer (email communication), Cookies (session management)
+
+ 2.2 Architecture Pattern
+The application follows the Model-View-Controller (MVC) design pattern:
+- Model: Manages the business logic (currently data is handled in memory, but a database can be integrated later)
+- View: Renders dynamic web pages using EJS
+- Controller: Handles HTTP requests, processes data, and interacts with models and views
+
+3. Features
+ 3.1 Job Seeker Functionalities
+- View available job listings
+- Apply for jobs using an online form
+- Receive confirmation emails upon successful application
+- User authentication and session management (future scope)
+
+ 3.2 Recruiter Functionalities
+- Register and log in as a recruiter
+- Post job listings with details
+- Update or delete job listings
+- View applicants for each job listing
+
+4. API Endpoints
+ 4.1 User Routes
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/` | View home page |
+| GET | `/jobs` | View all jobs |
+| GET | `/userLogin` | View user login page |
+| POST | `/verifyUser` | Verify user login |
+| GET | `/jobDetails/:jobId` | View job details |
+| GET | `/apply/:jobId` | View job application form |
+
+ 4.2 Recruiter Routes
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/recruiterSignUp` | View recruiter registration page |
+| POST | `/registerRecruiter` | Register a recruiter |
+| GET | `/viewRecruiterLogin` | View recruiter login page |
+| POST | `/verifyRecruiterLogin` | Verify recruiter login |
+| GET | `/recruiterJobs` | View recruiter's job listings |
+| GET | `/updateJob/:jobId` | View update job form |
+| POST | `/updateJob/:jobId` | Update job details |
+| DELETE | `/deleteJob/:jobId` | Delete job listing |
+
+5. User Authentication
+- Job Seekers: Login functionality (future scope)
+- Recruiters: Login using JWT and bcrypt for password hashing
+- Sessions & Cookies: Used for maintaining user sessions
+
+6. Future Enhancements
+- Implement a database for persistent storage (MongoDB/MySQL)
+- Improve UI/UX with better styling
+- Enhance security using role-based access control
+- Add search and filtering options for job listings
+- Implement profile management for users and recruiters
+- Integrate third-party authentication (Google, LinkedIn)
+
+7. Conclusion
+The Job Portal is designed as a scalable and modular application following the MVC architecture. Future improvements can include database integration, enhanced security, and additional features to improve user experience.
+

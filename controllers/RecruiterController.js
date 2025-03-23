@@ -2,7 +2,7 @@
 import recruiterModule from "../models/recruiterModule.js";
 import validator from "validator";
 import JobsModule from "../models/JobsModule.js";
-import ApplicationCounts from "../public/assest/model.js";
+import ApplicationCounts from "../Public/assest/model.js";
 
 const appCounts = new ApplicationCounts();
 class RecruiterController {
@@ -79,52 +79,55 @@ class RecruiterController {
 
   verifyRecruiterLogin(req, res) {
     try {
-      const { recruiterEmail, recruiterPassword } = req.body;
-      const errors = [];
-      const jobs = JobsModule.getJobs();
-      // Input validation
-      if (!recruiterEmail || !validator.isEmail(recruiterEmail)) {
-        errors.push({ message: "Please enter a valid email" });
-      }
-      if (!recruiterPassword || recruiterPassword.length < 6) {
-        errors.push({ message: "Password must be at least 6 characters long" });
-      }
+        const { recruiterEmail, recruiterPassword } = req.body;
+        const errors = [];
+        const jobs = JobsModule.getJobs();
 
-      // Render login page with errors if validation fails
-      if (errors.length > 0) {
-        return res.render("viewRecruiterLogin", {
-          errorMessage: errors,
-          email: recruiterEmail || "",
+        // Input validation
+        if (!recruiterEmail || !validator.isEmail(recruiterEmail)) {
+            errors.push({ message: "Please enter a valid email" });
+        }
+        if (!recruiterPassword || recruiterPassword.length < 6) {
+            errors.push({ message: "Password must be at least 6 characters long" });
+        }
+
+        // Render login page with errors if validation fails
+        if (errors.length > 0) {
+            return res.render("viewRecruiterLogin", {
+                errorMessage: errors,
+                email: recruiterEmail || "",
+            });
+        }
+
+        // Verify recruiter credentials via model
+        const recruiter = recruiterModule.verfiyRecruiter(recruiterEmail, recruiterPassword);
+
+        if (!recruiter) {
+            return res.render("viewRecruiterLogin", {
+                errorMessage: [{ message: "Invalid email or password" }],
+                email: recruiterEmail || "",
+            });
+        }
+
+        // Set session data
+        req.session.loggedIn = true;
+        req.session.user = { role: "recruiter", email: recruiterEmail };
+
+        // Redirect to ensure session is available
+        req.session.save((err) => {
+            if (err) {
+                console.error("Session save error:", err);
+                return res.status(500).send("Session error. Please try again.");
+            }
+            res.redirect("/jobs");
         });
-      }
 
-      // Verify recruiter credentials via model
-      const recruiter = recruiterModule.verfiyRecruiter(
-        recruiterEmail,
-        recruiterPassword
-      );
-
-      console.log("recruiter :", recruiter);
-      if (!recruiter) {
-        console.log("error in line number 102");
-        return res.render("viewRecruiterLogin", {
-          errorMessage: [{ message: "Invalid email or password" }],
-          email: recruiterEmail || "",
-        });
-      }
-
-      // Set session data
-      req.session.loggedIn = true;
-      req.session.user = { role: "recruiter", email: recruiterEmail };
-
-      // Ensure session is available and redirect to the jobs page with userRole
-      const userRole = req.session.user?.role || "guest"; // Default to 'guest' if no role is found
-      res.render("jobs", { userRole, jobs });
     } catch (error) {
-      console.error("Error during recruiter login:", error);
-      res.status(500).send("An unexpected error occurred.");
+        console.error("Error during recruiter login:", error);
+        res.status(500).send("An unexpected error occurred.");
     }
-  }
+}
+
   viewUpdateJobForm(req, res) {
     try {
       const jobId = req.params.jobId;

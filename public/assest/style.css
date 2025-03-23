@@ -153,3 +153,20 @@ body {
 .basic-form p a:hover {
   text-decoration: underline;
 }
+/* image */
+.image-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.image-section img {
+  width: 150px; /* Adjust size as needed */
+  height: 150px; /* Keep it circular */
+  object-fit: cover; /* Ensures the image fills the space without distortion */
+  border-radius: 50%; /* Makes it perfectly circular */
+  border: 4px solid #16c79e; /* Optional border */
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); /* Optional shadow effect */
+}
+

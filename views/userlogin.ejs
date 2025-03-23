@@ -12,17 +12,7 @@
         <input type="password" class="form-control" id="password" name="UserPassword" required>
     </div>
 
-    <!-- Display errors if any -->
-    <% if (errorMessage && errorMessage.length > 0) { %>
-        <div class="alert alert-danger">
-            <ul>
-                <% errorMessage.forEach(function(error) { %>
-                    <li><%= error.message %></li> <!-- Access the message field -->
-                <% }) %>
-            </ul>
-        </div>
-    <% } %>
-    
+  
     
     <button type="submit" class="btn btn-primary">Login</button>
 </form>
